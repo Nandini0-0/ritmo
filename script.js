@@ -455,13 +455,13 @@ const guideSteps = [
     },
     {
         emoji: '◈',
-        title: 'Today\'s intentions',
+        title: 'Today\'s goals',
         desc: 'These are your <b>one-day missions</b> - specific to today. The list <b>resets at midnight</b> so you always wake up to a clean slate.'
     },
     {
         emoji: '🎵',
         title: 'Your rhythm today',
-        desc: 'One bar tracks everything - rituals and intentions combined. <b>Watch it shift from red to green</b> as your day takes shape.'
+        desc: 'One bar tracks everything - rituals and goals combined. <b>Watch it shift from red to green</b> as your day takes shape.'
     }
 ];
 
