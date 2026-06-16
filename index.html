@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Habit tracker</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-top">
+                <div class="hero-text">
+                    <h1>ritmo <span class="star">✦</span></h1>
+                    <p class="tagline">Small rituals. Repeated faithfully.</p>
+                </div>
+                <button class="help-btn" onclick="openGuide()">
+                    <span class="help-q">?</span> How it works
+                </button>
+            </div>
+            <p class="hero-date" id="hero-date"></p>
+        </section>
+
+        <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+            <div class="modal">
+                <div class="modal-header">
+                    <div class="modal-step-label" id="step-label">Step 1 of 4</div>
+                    <div class="modal-title" id="step-title">Welcome</div>
+                    <button class="modal-close" onclick="closeGuide()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-icon">
+                        <span id="step-emoji">🔥</span>
+                    </div>
+                    <p class="modal-desc" id="step-desc"></p>
+                </div>
+                <div class="modal-footer">
+                    <div class="step-dots" id="dots"></div>
+                    <div class="modal-btns">
+                        <button class="btn-prev" id="btn-prev" onclick="prevStep()">Back</button>
+                        <button class="btn-next" id="btn-next" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="todays-progress">
+            <h2 id="prog"></h2>
+            <p class="motivational"></p>
+            <div class="daily-progress">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="prog-stats">
+                <div class="prog-stat">
+                    <span class="prog-stat-label">Rituals kept</span>
+                    <span class="prog-stat-val habit_prog"></span>
+                </div>
+                <div class="prog-stat">
+                    <span class="prog-stat-label">Today's intentions</span>
+                    <span class="prog-stat-val task_prog"></span>
+                </div>
+            </div>
+        </section>
+
+        <div class="container_hab">
+            <div class="column">
+                <section class="add-habit">
+                    <h2>✦ Your rituals</h2>
+                    <input type="text" placeholder="A ritual worth keeping...">
+                    <button id="add_habit_button">+ Add ritual</button>
+                </section>
+                <section class="regular-habits">
+                    <h2 class="heading">Active rituals</h2>
+                </section>
+            </div>
+            <div class="column">
+                <section class="add-task">
+                    <h2>◈ Today's intentions</h2>
+                    <input type="text" placeholder="What must be done today...">
+                    <button id="add_task_button">+ Add intention</button>
+                </section>
+                <section class="todays-tasks">
+                    <h2 class="heading">On the list</h2>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
