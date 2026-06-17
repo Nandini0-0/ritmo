@@ -15,25 +15,16 @@ class task_obj {
     }
 }
 
-
-
+const saved_habits = JSON.parse(localStorage.getItem("habits")) || [];
+const saved_tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const todayStr = new Date().toDateString();
+const lastVisited = localStorage.getItem("lastVisited");
 const todays_habits = document.querySelector(".regular-habits");
-//1.
 const todays_tasks = document.querySelector(".todays-tasks");
 const progress_fill_style = document.querySelector(".progress-fill").style;
 
 
-const saved_habits = JSON.parse(localStorage.getItem("habits")) || [];
-const todayStr = new Date().toDateString();
-const lastVisited = localStorage.getItem("lastVisited");
 
-if (lastVisited !== todayStr) {
-    localStorage.setItem("lastVisited", todayStr);
-    resetForNewDay();
-}
-
-
-const saved_tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let isLoading = true;
 saved_habits.forEach((habit) => {
     let hab = add_habit(habit.habit_name);
@@ -58,13 +49,13 @@ saved_tasks.forEach((task) => {
 })
 isLoading = false;
 
-console.log(document.querySelector(".regular-habits"));
+
+if (lastVisited !== todayStr) {
+    localStorage.setItem("lastVisited", todayStr);
+    resetForNewDay();
+}
 
 update_progress();
-
-
-
-
 // Listener to add_habit_button
 document.querySelector('#add_habit_button').addEventListener("click", () => { add_habit(input_box_value()) });
 //Listener to input box (when enter pressed)
@@ -100,14 +91,11 @@ function new_card(name) {
     delete_btn.textContent = "🗑️";
     delete_btn.className = "delete-btn"
     newChild.appendChild(delete_btn);
-
     // //Edit button
     // const edit_btn = document.createElement("button");
     // edit_btn.textContent = "✏️";
     // edit_btn.className = "edit-btn"
     // newChild.appendChild(edit_btn)
-    newChild.appendChild(delete_btn);
-
     return newChild;
 }
 
@@ -545,6 +533,16 @@ function scheduleMidnightReset() {
         scheduleMidnightReset(); // Schedule next day
     }, msUntilMidnight);
 }
+// Also check whenever the user returns to the tab
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        const currentDay = new Date().toDateString();
+        if (localStorage.getItem("lastVisited") !== currentDay) {
+            resetForNewDay();
+        }
+    }
+});
+
 
 scheduleMidnightReset();
 
